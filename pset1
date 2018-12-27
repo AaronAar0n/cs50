@@ -1,1 +1,56 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
 
+int main(void)
+{
+    int quarter;
+    int dime;
+    int nickel;
+    int penny;
+    int numofCoins = 0;
+
+    //This gets the users input in dollars
+    float dollars;
+    do
+    {
+        dollars = get_float("Change owed: ");
+    }
+    while(dollars < 0);
+
+    //Converts the user inputed dollars to cents
+    int cents = round(dollars * 100);
+
+    //The start loops for the greedy algorithm
+    //Get number of quarters
+    for (quarter = 1 ; cents >= 25 ; quarter++)
+    {
+        cents -= 25;
+        numofCoins += 1;
+    }
+
+    //Get number of dimes
+    for (dime = 1; cents >= 10; dime++)
+    {
+        cents -= 10;
+        numofCoins += 1;
+    }
+
+    //Get number of nickels
+    for (nickel = 1; cents >= 5; nickel++)
+    {
+        cents -= 5;
+        numofCoins += 1;
+    }
+
+    //Get amount of pennies
+    for (penny = 1; cents >= 1; penny++)
+    {
+        cents -= 1;
+        numofCoins += 1;
+    }
+
+    //Print output
+
+    printf("%i\n", numofCoins);
+}
